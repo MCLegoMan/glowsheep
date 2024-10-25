@@ -1,4 +1,11 @@
-package com.mclegoman.glowsheep.common.block;
+/*
+    Glow Sheep
+    Contributor(s): MCLegoMan
+    Github: https://github.com/MCLegoMan/Fleecifer
+    License: GNU LGPLv3
+*/
+
+package com.mclegoman.glowsheep.common.tags;
 
 import com.mclegoman.glowsheep.common.GlowSheep;
 import net.minecraft.core.registries.Registries;

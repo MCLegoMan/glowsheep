@@ -1,7 +1,14 @@
+/*
+    Glow Sheep
+    Contributor(s): MCLegoMan
+    Github: https://github.com/MCLegoMan/Fleecifer
+    License: GNU LGPLv3
+*/
+
 package com.mclegoman.glowsheep.mixin;
 
 import com.mclegoman.glowsheep.common.GlowSheep;
-import com.mclegoman.glowsheep.common.block.GlowBlockTags;
+import com.mclegoman.glowsheep.common.tags.GlowBlockTags;
 import com.mclegoman.glowsheep.common.block.GlowWoolVariant;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
