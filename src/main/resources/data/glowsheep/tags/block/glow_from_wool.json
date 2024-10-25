@@ -1,0 +1,21 @@
+{
+	"replace": false,
+	"values": [
+		"#glowsheep:glow_from_white_wool",
+		"#glowsheep:glow_from_light_gray_wool",
+		"#glowsheep:glow_from_gray_wool",
+		"#glowsheep:glow_from_black_wool",
+		"#glowsheep:glow_from_brown_wool",
+		"#glowsheep:glow_from_red_wool",
+		"#glowsheep:glow_from_orange_wool",
+		"#glowsheep:glow_from_yellow_wool",
+		"#glowsheep:glow_from_lime_wool",
+		"#glowsheep:glow_from_green_wool",
+		"#glowsheep:glow_from_cyan_wool",
+		"#glowsheep:glow_from_light_blue_wool",
+		"#glowsheep:glow_from_blue_wool",
+		"#glowsheep:glow_from_purple_wool",
+		"#glowsheep:glow_from_magenta_wool",
+		"#glowsheep:glow_from_pink_wool"
+	]
+}

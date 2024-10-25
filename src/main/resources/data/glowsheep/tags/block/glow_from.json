@@ -1,0 +1,7 @@
+{
+	"replace": false,
+	"values": [
+		"#glowsheep:glow_from_wool",
+		"#glowsheep:glow_from_carpet"
+	]
+}

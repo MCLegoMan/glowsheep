@@ -5,5 +5,5 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-public record GlowWoolBlock(DeferredBlock<Block> block, DeferredItem<BlockItem> item, GlowWoolColor color) {
+public record GlowWoolVariant(GlowWoolColor color, DeferredBlock<Block> woolBlock, DeferredItem<BlockItem> woolItem, DeferredBlock<Block> carpetBlock, DeferredItem<BlockItem> carpetItem) {
 }

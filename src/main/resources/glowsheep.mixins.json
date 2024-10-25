@@ -4,6 +4,7 @@
 	"package": "com.mclegoman.glowsheep.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"GlowInkSacItemMixin",
 		"SheepMixin"
 	],
 	"client": [

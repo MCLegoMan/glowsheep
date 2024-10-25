@@ -1,14 +1,12 @@
 package com.mclegoman.glowsheep.common;
 
-import com.mclegoman.glowsheep.common.block.GlowWoolBlock;
+import com.mclegoman.glowsheep.common.block.GlowWoolVariant;
 import com.mclegoman.glowsheep.common.block.GlowWoolColor;
 import com.mclegoman.glowsheep.common.loot.GlowLootTables;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.WoolCarpetBlock;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -28,6 +26,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Mod(GlowSheep.modId)
 public class GlowSheep {
@@ -36,12 +35,15 @@ public class GlowSheep {
     public static final DeferredRegister.Items items = DeferredRegister.createItems(modId);
     public static final DeferredRegister<CreativeModeTab> creativeTabs = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, modId);
 
-    public static final List<GlowWoolBlock> woolBlocks = addWoolBlocks(woolColors());
+    public static final List<GlowWoolVariant> woolBlocks = addWoolBlocks(woolColors());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> creativeTab = creativeTabs.register(modId, () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + modId))
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> woolBlocks.getFirst().item().get().getDefaultInstance())
-            .displayItems((parameters, output) -> woolBlocks.forEach((block) -> output.accept(block.item().get()))).build());
+            .icon(() -> woolBlocks.getFirst().woolItem().get().getDefaultInstance())
+            .displayItems((parameters, output) -> woolBlocks.forEach((block) -> {
+                output.accept(block.woolItem().get());
+                output.accept(block.carpetItem().get());
+                })).build());
 
     public GlowSheep(IEventBus modEventBus, ModContainer modContainer) {
         blocks.register(modEventBus);
@@ -69,13 +71,29 @@ public class GlowSheep {
         values.add(new GlowWoolColor("pink", MapColor.COLOR_PINK, DyeColor.PINK));
         return values;
     }
-    private static List<GlowWoolBlock> addWoolBlocks(List<GlowWoolColor> woolColors) {
-        List<GlowWoolBlock> values = new ArrayList<>();
+    private static List<GlowWoolVariant> addWoolBlocks(List<GlowWoolColor> woolColors) {
+        List<GlowWoolVariant> values = new ArrayList<>();
         woolColors.forEach((color) -> {
-            DeferredBlock<Block> block = blocks.registerSimpleBlock(color.color() + "_glow_wool", BlockBehaviour.Properties.of().mapColor(color.mapColor()).instrument(NoteBlockInstrument.GUITAR).strength(0.8F).sound(SoundType.WOOL).ignitedByLava().lightLevel((blockState) -> 7));
-            DeferredItem<BlockItem> item = items.registerSimpleBlockItem(color.color() + "_glow_wool", block);
-            values.add(new GlowWoolBlock(block, item, color));
+            DeferredBlock<Block> woolBlock = blocks.registerSimpleBlock(color.color() + "_glow_wool", BlockBehaviour.Properties.of().mapColor(color.mapColor()).instrument(NoteBlockInstrument.GUITAR).strength(0.8F).sound(SoundType.WOOL).ignitedByLava().lightLevel((blockState) -> 7));
+            DeferredItem<BlockItem> woolItem = items.registerSimpleBlockItem(color.color() + "_glow_wool", woolBlock);
+
+            DeferredBlock<Block> carpetBlock = blocks.registerBlock(color.color() + "_glow_carpet", (properties) -> new WoolCarpetBlock(color.dyeColor(), properties), BlockBehaviour.Properties.of().mapColor(color.mapColor()).instrument(NoteBlockInstrument.GUITAR).strength(0.1F).sound(SoundType.WOOL).ignitedByLava().lightLevel((blockState) -> 7));
+            DeferredItem<BlockItem> carpetItem = items.registerSimpleBlockItem(color.color() + "_glow_carpet", carpetBlock);
+
+            values.add(new GlowWoolVariant(color, woolBlock, woolItem, carpetBlock, carpetItem));
         });
         return values;
+    }
+    public static Optional<GlowWoolVariant> getWoolBlock(String color) {
+        for (GlowWoolVariant variant : woolBlocks) {
+            if (variant.color().color().equals(color)) return Optional.of(variant);
+        }
+        return Optional.empty();
+    }
+    public static Optional<GlowWoolVariant> getWoolBlock(DyeColor color) {
+        for (GlowWoolVariant variant : woolBlocks) {
+            if (variant.color().dyeColor().equals(color)) return Optional.of(variant);
+        }
+        return Optional.empty();
     }
 }

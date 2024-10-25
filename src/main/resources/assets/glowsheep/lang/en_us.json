@@ -1,5 +1,6 @@
 {
 	"itemGroup.glowsheep": "Glow Sheep",
+
 	"block.glowsheep.white_glow_wool": "White Glow Wool",
 	"block.glowsheep.light_gray_glow_wool": "Light Gray Glow Wool",
 	"block.glowsheep.gray_glow_wool": "Gray Glow Wool",
@@ -15,5 +16,39 @@
 	"block.glowsheep.blue_glow_wool": "Blue Glow Wool",
 	"block.glowsheep.purple_glow_wool": "Purple Glow Wool",
 	"block.glowsheep.magenta_glow_wool": "Magenta Glow Wool",
-	"block.glowsheep.pink_glow_wool": "Pink Glow Wool"
+	"block.glowsheep.pink_glow_wool": "Pink Glow Wool",
+
+	"block.glowsheep.white_glow_carpet": "White Glow Carpet",
+	"block.glowsheep.light_gray_glow_carpet": "Light Gray Glow Carpet",
+	"block.glowsheep.gray_glow_carpet": "Gray Glow Carpet",
+	"block.glowsheep.black_glow_carpet": "Black Glow Carpet",
+	"block.glowsheep.brown_glow_carpet": "Brown Glow Carpet",
+	"block.glowsheep.red_glow_carpet": "Red Glow Carpet",
+	"block.glowsheep.orange_glow_carpet": "Orange Glow Carpet",
+	"block.glowsheep.yellow_glow_carpet": "Yellow Glow Carpet",
+	"block.glowsheep.lime_glow_carpet": "Lime Glow Carpet",
+	"block.glowsheep.green_glow_carpet": "Green Glow Carpet",
+	"block.glowsheep.cyan_glow_carpet": "Cyan Glow Carpet",
+	"block.glowsheep.light_blue_glow_carpet": "Light Blue Glow Carpet",
+	"block.glowsheep.blue_glow_carpet": "Blue Glow Carpet",
+	"block.glowsheep.purple_glow_carpet": "Purple Glow Carpet",
+	"block.glowsheep.magenta_glow_carpet": "Magenta Glow Carpet",
+	"block.glowsheep.pink_glow_carpet": "Pink Glow Carpet",
+
+	"block.glowsheep.white_glow_bed": "White Glow Bed",
+	"block.glowsheep.light_gray_glow_bed": "Light Gray Glow Bed",
+	"block.glowsheep.gray_glow_bed": "Gray Glow Bed",
+	"block.glowsheep.black_glow_bed": "Black Glow Bed",
+	"block.glowsheep.brown_glow_bed": "Brown Glow Bed",
+	"block.glowsheep.red_glow_bed": "Red Glow Bed",
+	"block.glowsheep.orange_glow_bed": "Orange Glow Bed",
+	"block.glowsheep.yellow_glow_bed": "Yellow Glow Bed",
+	"block.glowsheep.lime_glow_bed": "Lime Glow Bed",
+	"block.glowsheep.green_glow_bed": "Green Glow Bed",
+	"block.glowsheep.cyan_glow_bed": "Cyan Glow Bed",
+	"block.glowsheep.light_blue_glow_bed": "Light Blue Glow Bed",
+	"block.glowsheep.blue_glow_bed": "Blue Glow Bed",
+	"block.glowsheep.purple_glow_bed": "Purple Glow Bed",
+	"block.glowsheep.magenta_glow_bed": "Magenta Glow Bed",
+	"block.glowsheep.pink_glow_bed": "Pink Glow Bed"
 }

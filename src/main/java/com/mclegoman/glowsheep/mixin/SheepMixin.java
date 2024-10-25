@@ -1,7 +1,7 @@
 package com.mclegoman.glowsheep.mixin;
 
 import com.mclegoman.glowsheep.common.GlowSheep;
-import com.mclegoman.glowsheep.common.block.GlowWoolBlock;
+import com.mclegoman.glowsheep.common.block.GlowWoolVariant;
 import com.mclegoman.glowsheep.common.entity.Glow;
 import com.mclegoman.glowsheep.common.entity.GlowComponent;
 import com.mclegoman.glowsheep.common.loot.GlowLootTables;
@@ -111,9 +111,9 @@ public abstract class SheepMixin extends Animal implements Glow {
     @Redirect(method = "shear", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/Sheep;spawnAtLocation(Lnet/minecraft/world/level/ItemLike;I)Lnet/minecraft/world/entity/item/ItemEntity;"))
     private ItemEntity shear(Sheep instance, ItemLike itemLike, int i) {
         if (this.glowsheep$isGlow()) {
-            for (GlowWoolBlock block : GlowSheep.woolBlocks) {
+            for (GlowWoolVariant block : GlowSheep.woolBlocks) {
                 if (block.color().dyeColor().equals(this.getColor())) {
-                    return this.spawnAtLocation(block.item(), i);
+                    return this.spawnAtLocation(block.woolItem(), i);
                 }
             }
         }
