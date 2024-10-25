@@ -1,5 +1,5 @@
 # Glow Sheep
-*Made for [ModFest 1.21](https://modfest.net/1.21)*
+*Made for [ModFest 1.21](https://modfest.net/1.21), and developed in one day (25/10/2024)*  
 
 Adds glow variants of sheep and wool blocks.
 
@@ -10,5 +10,7 @@ This mod is a reference to the bug found in [in-20100213](https://minecraft.wiki
 #  
 Licensed under LGPL-3.0-or-later.
 
+Some assets used are property of Mojang Studios, and fall under [Minecraft EULA](https://www.minecraft.net/en-us/eula).  
+
 This mod is not affiliated with/endorsed by Mojang Studios or Microsoft.  
-[Minecraft](https://minecraft.net) is a trademark of Microsoft Corporation.  
+[Minecraft](https://minecraft.net) is a trademark of Microsoft Corporation.
