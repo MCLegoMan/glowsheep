@@ -7,10 +7,11 @@ issueTrackerURL="https://github.com/mclegoman/glowsheep/issues"
 modId="glowsheep"
 version="1.0.0"
 displayName="Glow Sheep"
-#logoFile="icon.png"
+logoFile="icon.png"
 #credits=""
 authors="dannytaylor"
-description='''Adds glow sheep.\nMade for ModFest 1.21'''
+description='''Adds glow sheep.
+Made for ModFest 1.21'''
 
 [[mixins]]
 config="glowsheep.mixins.json"
