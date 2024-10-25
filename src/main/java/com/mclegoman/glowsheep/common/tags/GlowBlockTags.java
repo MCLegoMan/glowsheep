@@ -56,6 +56,6 @@ public final class GlowBlockTags {
 		return create(GlowSheep.modId, key);
 	}
 	private static TagKey<Block> create(String namespace, String key) {
-		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(namespace, key));
+		return TagKey.create(Registries.BLOCK, ResourceLocation.tryBuild(namespace, key));
 	}
 }

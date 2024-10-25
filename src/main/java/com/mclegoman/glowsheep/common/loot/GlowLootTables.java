@@ -8,31 +8,28 @@
 package com.mclegoman.glowsheep.common.loot;
 
 import com.mclegoman.glowsheep.common.GlowSheep;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.LootTable;
 
 public class GlowLootTables {
-	public static final ResourceKey<LootTable> GLOW_SHEEP_WHITE;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_ORANGE;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_MAGENTA;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_LIGHT_BLUE;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_YELLOW;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_LIME;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_PINK;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_GRAY;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_LIGHT_GRAY;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_CYAN;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_PURPLE;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_BLUE;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_BROWN;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_GREEN;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_RED;
-	public static final ResourceKey<LootTable> GLOW_SHEEP_BLACK;
+	public static final ResourceLocation GLOW_SHEEP_WHITE;
+	public static final ResourceLocation GLOW_SHEEP_ORANGE;
+	public static final ResourceLocation GLOW_SHEEP_MAGENTA;
+	public static final ResourceLocation GLOW_SHEEP_LIGHT_BLUE;
+	public static final ResourceLocation GLOW_SHEEP_YELLOW;
+	public static final ResourceLocation GLOW_SHEEP_LIME;
+	public static final ResourceLocation GLOW_SHEEP_PINK;
+	public static final ResourceLocation GLOW_SHEEP_GRAY;
+	public static final ResourceLocation GLOW_SHEEP_LIGHT_GRAY;
+	public static final ResourceLocation GLOW_SHEEP_CYAN;
+	public static final ResourceLocation GLOW_SHEEP_PURPLE;
+	public static final ResourceLocation GLOW_SHEEP_BLUE;
+	public static final ResourceLocation GLOW_SHEEP_BROWN;
+	public static final ResourceLocation GLOW_SHEEP_GREEN;
+	public static final ResourceLocation GLOW_SHEEP_RED;
+	public static final ResourceLocation GLOW_SHEEP_BLACK;
 	public static void init() {}
-	private static ResourceKey<LootTable> register(String key) {
-		return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(GlowSheep.modId, key));
+	private static ResourceLocation register(String key) {
+		return ResourceLocation.tryBuild(GlowSheep.modId, key);
 	}
 	static {
 		GLOW_SHEEP_WHITE = register("entities/sheep/glow_white");

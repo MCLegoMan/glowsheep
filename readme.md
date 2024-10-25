@@ -2,6 +2,9 @@
 *Made for [ModFest 1.21](https://modfest.net/1.21), and developed in one day (25/10/2024)*  
 [Download from Modrinth](https://modrinth.com/mod/glowsheep)  
 
+> [!NOTE]  
+> This branch is a port for Quilt 1.20.1, and is not planned to be released.  
+
 Adds glow variants of sheep, wool, and carpet blocks.  
 
 ![Picture of a Glow Sheep](https://cdn.modrinth.com/data/XYM4Qvhm/images/73297d467e017706eee25a59d9b107ef172c6f36.png)  

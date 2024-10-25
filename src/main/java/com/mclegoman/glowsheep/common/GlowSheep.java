@@ -7,55 +7,42 @@
 
 package com.mclegoman.glowsheep.common;
 
+import com.mclegoman.glowsheep.common.block.GlowCarpetBlock;
 import com.mclegoman.glowsheep.common.block.GlowWoolVariant;
 import com.mclegoman.glowsheep.common.block.GlowWoolColor;
 import com.mclegoman.glowsheep.common.loot.GlowLootTables;
-import net.minecraft.world.item.DyeColor;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WoolCarpetBlock;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Mod(GlowSheep.modId)
-public class GlowSheep {
+public class GlowSheep implements ModInitializer {
     public static final String modId = "glowsheep";
-    public static final DeferredRegister.Blocks blocks = DeferredRegister.createBlocks(modId);
-    public static final DeferredRegister.Items items = DeferredRegister.createItems(modId);
-    public static final DeferredRegister<CreativeModeTab> creativeTabs = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, modId);
 
     public static final List<GlowWoolVariant> woolBlocks = addWoolBlocks(woolColors());
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> creativeTab = creativeTabs.register(modId, () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup." + modId))
-            .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> woolBlocks.getFirst().woolItem().get().getDefaultInstance())
-            .displayItems((parameters, output) -> woolBlocks.forEach((block) -> {
-                output.accept(block.woolItem().get());
-                output.accept(block.carpetItem().get());
-                })).build());
 
-    public GlowSheep(IEventBus modEventBus, ModContainer modContainer) {
-        blocks.register(modEventBus);
-        items.register(modEventBus);
-        creativeTabs.register(modEventBus);
+    public static final CreativeModeTab creativeTab = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(woolBlocks.getFirst().woolItem()))
+            .title(Component.translatable("itemGroup." + modId))
+            .displayItems((context, entries) -> woolBlocks.forEach((block) -> {
+                entries.accept(block.woolBlock());
+                entries.accept(block.carpetBlock());
+            })).build();
+    public void onInitialize(ModContainer mod) {
         GlowLootTables.init();
     }
     private static List<GlowWoolColor> woolColors() {
@@ -81,11 +68,11 @@ public class GlowSheep {
     private static List<GlowWoolVariant> addWoolBlocks(List<GlowWoolColor> woolColors) {
         List<GlowWoolVariant> values = new ArrayList<>();
         woolColors.forEach((color) -> {
-            DeferredBlock<Block> woolBlock = blocks.registerSimpleBlock(color.color() + "_glow_wool", BlockBehaviour.Properties.of().mapColor(color.mapColor()).instrument(NoteBlockInstrument.GUITAR).strength(0.8F).sound(SoundType.WOOL).ignitedByLava().lightLevel((blockState) -> 7));
-            DeferredItem<BlockItem> woolItem = items.registerSimpleBlockItem(color.color() + "_glow_wool", woolBlock);
+            Block woolBlock = Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.tryBuild(modId, color.color() + "_glow_wool"), new Block(BlockBehaviour.Properties.of().mapColor(color.mapColor()).instrument(NoteBlockInstrument.GUITAR).strength(0.8F).sound(SoundType.WOOL).ignitedByLava().lightLevel((blockState) -> 7)));
+            BlockItem woolItem = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.tryBuild(modId, color.color() + "_glow_wool"), new BlockItem(woolBlock, new Item.Properties()));
 
-            DeferredBlock<Block> carpetBlock = blocks.registerBlock(color.color() + "_glow_carpet", (properties) -> new WoolCarpetBlock(color.dyeColor(), properties), BlockBehaviour.Properties.of().mapColor(color.mapColor()).instrument(NoteBlockInstrument.GUITAR).strength(0.1F).sound(SoundType.WOOL).ignitedByLava().lightLevel((blockState) -> 7));
-            DeferredItem<BlockItem> carpetItem = items.registerSimpleBlockItem(color.color() + "_glow_carpet", carpetBlock);
+            Block carpetBlock = Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.tryBuild(modId, color.color() + "_glow_carpet"), new GlowCarpetBlock(color, BlockBehaviour.Properties.of()));
+            BlockItem carpetItem = Registry.register(BuiltInRegistries.ITEM, ResourceLocation.tryBuild(modId, color.color() + "_glow_carpet"), new BlockItem(carpetBlock, new Item.Properties()));
 
             values.add(new GlowWoolVariant(color, woolBlock, woolItem, carpetBlock, carpetItem));
         });

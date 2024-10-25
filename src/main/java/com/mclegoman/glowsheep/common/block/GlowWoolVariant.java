@@ -9,8 +9,6 @@ package com.mclegoman.glowsheep.common.block;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 
-public record GlowWoolVariant(GlowWoolColor color, DeferredBlock<Block> woolBlock, DeferredItem<BlockItem> woolItem, DeferredBlock<Block> carpetBlock, DeferredItem<BlockItem> carpetItem) {
+public record GlowWoolVariant(GlowWoolColor color, Block woolBlock, BlockItem woolItem, Block carpetBlock, BlockItem carpetItem) {
 }

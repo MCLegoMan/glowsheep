@@ -23,10 +23,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
 
 @Mixin(GlowInkSacItem.class)
@@ -45,13 +45,13 @@ public abstract class GlowInkSacItemMixin extends Item {
             if (player instanceof ServerPlayer) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, itemstack);
             world.setBlock(blockPos, blockState.get(), 11);
             world.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, blockState.get()));
-            if (player != null) itemstack.consume(1, player);
+            if (player != null) itemstack.shrink(1);
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
     }
     @Unique
     private Optional<BlockState> glowsheep$evaluateNewBlockState(Level world, BlockPos blockPos, @Nullable Player player, BlockState blockState) {
-        if (!blockState.isEmpty()) {
+        if (!blockState.isAir()) {
             if (blockState.is(GlowBlockTags.glowFrom)) {
                 Optional<String> color = Optional.empty();
                 if (blockState.is(GlowBlockTags.wool)) {
@@ -101,8 +101,8 @@ public abstract class GlowInkSacItemMixin extends Item {
         Optional<GlowWoolVariant> variant = GlowSheep.getWoolBlock(color);
         if (variant.isPresent()) {
             world.playSound(player, blockPos, SoundEvents.GLOW_INK_SAC_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            if (carpet) return Optional.of(variant.get().carpetBlock().get().defaultBlockState());
-            else return Optional.of(variant.get().woolBlock().get().defaultBlockState());
+            if (carpet) return Optional.of(variant.get().carpetBlock().defaultBlockState());
+            else return Optional.of(variant.get().woolBlock().defaultBlockState());
         }
         return Optional.empty();
     }

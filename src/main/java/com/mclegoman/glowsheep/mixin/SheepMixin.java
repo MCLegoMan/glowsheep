@@ -16,7 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -33,7 +33,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.storage.loot.LootTable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -59,8 +58,8 @@ public abstract class SheepMixin extends Animal implements Glow {
         this.glowsheep$glowComponent = new GlowComponent(this.entityData, glowsheep$glow);
     }
     @Inject(method = "defineSynchedData", at = @At("TAIL"))
-    private void glowsheep$initDataTracker(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(glowsheep$glow, false);
+    private void glowsheep$initDataTracker(CallbackInfo ci) {
+        this.entityData.define(glowsheep$glow, false);
     }
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     private void glowsheep$writeCustomDataToNbt(CompoundTag nbt, CallbackInfo ci) {
@@ -81,18 +80,18 @@ public abstract class SheepMixin extends Animal implements Glow {
     private void glowsheep$mobInteract(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         if (!this.glowsheep$isGlow()) {
             if ((hand.equals(InteractionHand.MAIN_HAND) && player.getMainHandItem().is(Items.GLOW_INK_SAC)) || (hand.equals(InteractionHand.OFF_HAND) && player.getOffhandItem().is(Items.GLOW_INK_SAC))) {
-                if (hand.equals(InteractionHand.MAIN_HAND)) player.getMainHandItem().consume(1, player);
-                else player.getOffhandItem().consume(1, player);
+                if (hand.equals(InteractionHand.MAIN_HAND)) player.getMainHandItem().shrink(1);
+                else player.getOffhandItem().shrink(1);
                 glowsheep$setGlow();
                 cir.setReturnValue(InteractionResult.PASS);
             }
         }
     }
     @Inject(method = "getDefaultLootTable", at = @At("HEAD"), cancellable = true)
-    private void glowsheep$getDefaultLootTable(CallbackInfoReturnable<ResourceKey<LootTable>> cir) {
+    private void glowsheep$getDefaultLootTable(CallbackInfoReturnable<ResourceLocation> cir) {
         if (this.glowsheep$isGlow()) {
             if (!this.isSheared()) {
-                ResourceKey<LootTable> lootTable = null;
+                ResourceLocation lootTable = null;
                 switch (this.getColor()) {
                     case WHITE -> lootTable = GlowLootTables.GLOW_SHEEP_WHITE;
                     case ORANGE -> lootTable = GlowLootTables.GLOW_SHEEP_ORANGE;
@@ -127,7 +126,7 @@ public abstract class SheepMixin extends Animal implements Glow {
         return this.spawnAtLocation(itemLike, i);
     }
     @Inject(method = "finalizeSpawn", at = @At("TAIL"))
-    private void glowsheep$finalizeSpawn(ServerLevelAccessor p_29835_, DifficultyInstance p_29836_, MobSpawnType p_29837_, SpawnGroupData p_29838_, CallbackInfoReturnable<SpawnGroupData> cir) {
+    private void glowsheep$finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, SpawnGroupData entityData, CompoundTag entityNbt, CallbackInfoReturnable<SpawnGroupData> cir) {
         if (level().getRandom().nextInt(128) == 0) glowsheep$setGlow();
     }
     static {

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "glow_carpet",
+  "key": {
+    "#": {
+      "item": "glowsheep:magenta_glow_wool"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "item": "glowsheep:magenta_glow_carpet"
+  }
+}
