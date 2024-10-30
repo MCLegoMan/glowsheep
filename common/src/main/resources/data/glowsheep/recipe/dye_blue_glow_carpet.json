@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "glow_carpet",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_ink_sac"
+    },
+    {
+      "item": "minecraft:blue_carpet"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "glowsheep:blue_glow_carpet"
+  }
+}

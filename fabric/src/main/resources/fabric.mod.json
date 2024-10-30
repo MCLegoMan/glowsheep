@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "glowsheep",
+  "version": "${version}",
+  "name": "Glow Sheep",
+  "description": "Adds glow sheep. Made for ModFest 1.21",
+  "authors": [
+    "dannytaylor"
+  ],
+  "contact": {
+    "homepage": "https://github.com/mclegoman/glowsheep",
+    "issues": "https://github.com/mclegoman/glowsheep/issues",
+    "sources": "https://github.com/mclegoman/glowsheep/"
+  },
+  "license": "LGPL-3.0-or-later",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mclegoman.glowsheep.common.GlowSheepInit"
+    ]
+  },
+  "mixins": [
+    "glowsheep.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "~1.21.1"
+  }
+}

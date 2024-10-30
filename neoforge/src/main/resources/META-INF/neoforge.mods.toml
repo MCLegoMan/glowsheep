@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/mclegoman/glowsheep/issues"
+license = "LGPL-3.0-or-later"
+
+[[mods]]
+modId = "glowsheep"
+version = "${version}"
+displayName = "Glow Sheep"
+displayURL = "https://github.com/mclegoman/glowsheep"
+logoFile = "icon.png"
+authors = "dannytaylor"
+description = '''Adds glow sheep. Made for ModFest 1.21'''
+
+[[dependencies.glowsheep]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.glowsheep]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "glowsheep.mixins.json"

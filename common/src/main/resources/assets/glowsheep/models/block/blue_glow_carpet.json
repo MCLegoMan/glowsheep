@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "glowsheep:block/blue_glow_wool"
+  }
+}

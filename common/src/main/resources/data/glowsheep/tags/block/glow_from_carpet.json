@@ -1,0 +1,21 @@
+{
+	"replace": false,
+	"values": [
+		"#glowsheep:glow_from_white_carpet",
+		"#glowsheep:glow_from_light_gray_carpet",
+		"#glowsheep:glow_from_gray_carpet",
+		"#glowsheep:glow_from_black_carpet",
+		"#glowsheep:glow_from_brown_carpet",
+		"#glowsheep:glow_from_red_carpet",
+		"#glowsheep:glow_from_orange_carpet",
+		"#glowsheep:glow_from_yellow_carpet",
+		"#glowsheep:glow_from_lime_carpet",
+		"#glowsheep:glow_from_green_carpet",
+		"#glowsheep:glow_from_cyan_carpet",
+		"#glowsheep:glow_from_light_blue_carpet",
+		"#glowsheep:glow_from_blue_carpet",
+		"#glowsheep:glow_from_purple_carpet",
+		"#glowsheep:glow_from_magenta_carpet",
+		"#glowsheep:glow_from_pink_carpet"
+	]
+}

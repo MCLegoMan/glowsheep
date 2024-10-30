@@ -1,0 +1,36 @@
+{
+    "schema_version": 1,
+    "quilt_loader": {
+        "group": "${group}",
+        "id": "glowsheep",
+        "version": "${version}",
+        "metadata": {
+            "name": "Glow Sheep",
+            "description": "Adds glow sheep. Made for ModFest 1.21",
+            "contributors": {
+                "dannytaylor": "Owner"
+            },
+            "contact": {},
+            "license": "LGPL-3.0-or-later"
+        },
+        "intermediate_mappings": "net.fabricmc:intermediary",
+        "entrypoints": {
+            "init": "com.mclegoman.glowsheep.common.GlowSheepInit"
+        },
+        "depends": [
+            {
+                "id": "quilt_loader",
+                "versions": "*"
+            },
+            {
+                "id": "quilted_fabric_api",
+                "versions": "*"
+            },
+            {
+                "id": "minecraft",
+                "versions": "~1.21.1"
+            }
+        ]
+    },
+    "mixin": "glowsheep.mixins.json"
+}
