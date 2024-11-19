@@ -10,6 +10,7 @@ displayName = "Glow Sheep"
 displayURL = "https://github.com/mclegoman/glowsheep"
 logoFile = "icon.png"
 authors = "dannytaylor"
+# contributors = "unroman" // AFAIK, neoforge doesn't have a way to split authors, and contributors.
 description = '''Adds glow sheep. Made for ModFest 1.21'''
 
 [[dependencies.glowsheep]]
