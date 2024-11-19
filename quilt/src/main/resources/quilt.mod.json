@@ -8,7 +8,8 @@
             "name": "Glow Sheep",
             "description": "Adds glow sheep. Made for ModFest 1.21",
             "contributors": {
-                "dannytaylor": "Owner"
+                "dannytaylor": "Owner",
+                "unroman": "Translator (uk_ua)"
             },
             "contact": {},
             "license": "LGPL-3.0-or-later"
