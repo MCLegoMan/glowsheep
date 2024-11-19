@@ -37,7 +37,6 @@ public class GlowSheep {
     public static final List<GlowWoolVariant> woolBlocks = addWoolBlocks(woolColors());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> creativeTab = creativeTabs.register(GlowSheep.modId, () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + GlowSheep.modId))
-            .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> woolBlocks.getFirst().woolItem().get().getDefaultInstance())
             .displayItems((parameters, output) -> woolBlocks.forEach((block) -> {
                 output.accept(block.woolItem().get());
